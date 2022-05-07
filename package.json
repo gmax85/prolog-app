@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "check-format": "prettier --check",
     "lint": "next lint",
     "cypress": "cypress open",
     "storybook": "start-storybook -p 6006",
@@ -36,6 +37,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-storybook": "^0.5.11",
+    "prettier": "2.6.2",
     "typescript": "4.6.4"
   }
 }
