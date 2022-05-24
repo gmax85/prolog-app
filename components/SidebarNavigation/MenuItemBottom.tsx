@@ -16,6 +16,22 @@ const Button = styled.button`
   align-items: center;
   color: #f2f4f7;
   text-decoration: none;
+  cursor: pointer;
+
+  // remove default button styles
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
 `;
 
 const Icon = styled.img`
