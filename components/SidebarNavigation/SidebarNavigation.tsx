@@ -27,18 +27,22 @@ const Logo = styled.img`
 const List = styled.ul`
   list-style: none;
   padding: 0;
-  padding: 0 16px;
+  margin: 0;
 `;
+
+const LinkList = styled(List)`
+  flex: 1;
 `;
 
 export function SidebarNavigation() {
   return (
     <Nav>
       <Logo src="/icons/logo-large.svg" />
+      <LinkList>
         {menuItems.map((menuItem, index) => (
           <MenuItemLink key={index} {...menuItem} />
         ))}
-      </List>
+      </LinkList>
 
       <List>
         <MenuItemButton
