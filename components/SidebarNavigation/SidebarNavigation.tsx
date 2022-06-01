@@ -3,7 +3,8 @@ import { Routes } from "../../config/routes";
 import { MenuItemLink } from "./MenuItemLink";
 import { MenuItemButton } from "./MenuItemBottom";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext } from "react";
+import { NavigationContext } from "../../contexts/Navigation";
 
 const menuItems = [
   { text: "Projects", iconSrc: "/icons/projects.svg", href: Routes.projects },
@@ -39,20 +40,23 @@ const LinkList = styled(List)`
 
 export function SidebarNavigation() {
   const router = useRouter();
-  const [isCollapsed, setCollapsed] = useState(false);
+  // const [isCollapsed, setCollapsed] = useState(false);
+  const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
 
   return (
-    <Nav isCollapsed={isCollapsed}>
+    <Nav isCollapsed={isSidebarCollapsed}>
       <Logo
-        src={isCollapsed ? "/icons/logo-small.svg" : "/icons/logo-large.svg"}
-        isCollapsed={isCollapsed}
+        src={
+          isSidebarCollapsed ? "/icons/logo-small.svg" : "/icons/logo-large.svg"
+        }
+        isCollapsed={isSidebarCollapsed}
       />
       <LinkList>
         {menuItems.map((menuItem, index) => (
           <MenuItemLink
             key={index}
             {...menuItem}
-            isCollapsed={isCollapsed}
+            isCollapsed={isSidebarCollapsed}
             isActive={router.pathname === menuItem.href}
           />
         ))}
@@ -62,14 +66,14 @@ export function SidebarNavigation() {
         <MenuItemButton
           text="Support"
           iconSrc="/icons/support.svg"
-          isCollapsed={isCollapsed}
+          isCollapsed={isSidebarCollapsed}
           onClick={() => alert("Support")}
         />
         <MenuItemButton
           text="Collapse"
           iconSrc="/icons/arrow-left.svg"
-          isCollapsed={isCollapsed}
-          onClick={() => setCollapsed(!isCollapsed)}
+          isCollapsed={isSidebarCollapsed}
+          onClick={() => toggleSidebar()}
         />
       </List>
     </Nav>
