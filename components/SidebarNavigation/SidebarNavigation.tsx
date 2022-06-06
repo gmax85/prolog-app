@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Routes } from "../../config/routes";
+import { Routes } from "@config/routes";
 import { MenuItemLink } from "./MenuItemLink";
 import { MenuItemButton } from "./MenuItemBottom";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { NavigationContext } from "../../contexts/Navigation";
+import { NavigationContext } from "@contexts/Navigation";
 
 const menuItems = [
   { text: "Projects", iconSrc: "/icons/projects.svg", href: Routes.projects },

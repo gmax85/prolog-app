@@ -1,3 +1,8 @@
+const path = require("path");
+const tsConfig = require("../tsconfig.json");
+
+console.log(tsConfig);
+
 module.exports = {
   stories: ["../**/*.stories.mdx", "../**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -11,6 +16,11 @@ module.exports = {
     config.resolve.alias["next/router"] = require.resolve(
       "../__mocks__/next/router.tsx"
     );
+    config.resolve.alias["@components"] = path.resolve("./components");
+    config.resolve.alias["@contexts"] = path.resolve("./contexts");
+    config.resolve.alias["@styles"] = path.resolve("./styles");
+    config.resolve.alias["@config"] = path.resolve("./config");
+    console.log("alias", config.resolve.alias);
     return config;
   },
 };

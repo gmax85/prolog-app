@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Routes } from "../../config/routes";
+import { Routes } from "@config/routes";
 import { SidebarNavigation } from "./SidebarNavigation";
 
 export default {
