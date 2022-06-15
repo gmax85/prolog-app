@@ -14,6 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["cypress", "@testing-library/cypress"],
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],
@@ -22,6 +23,12 @@
       "@config/*": ["config/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "styles/theme.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "styles/theme.ts",
+    "cypress/integration/navigation.spec.ts"
+  ],
   "exclude": ["node_modules"]
 }
