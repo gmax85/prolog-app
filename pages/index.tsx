@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { SidebarNavigation } from "@components/SidebarNavigation";
 
 // type ContainerProps = {
