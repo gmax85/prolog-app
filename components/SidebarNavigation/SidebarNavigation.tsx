@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Routes } from "@config/routes";
 import { MenuItemLink } from "./MenuItemLink";
 import { MenuItemButton } from "./MenuItemBottom";
@@ -14,18 +14,59 @@ const menuItems = [
   { text: "Settings", iconSrc: "/icons/settings.svg", href: Routes.settings },
 ];
 
-const Nav = styled.nav<{ isCollapsed: boolean }>`
-  width: ${(props) => (props.isCollapsed ? "50px" : "248px")};
+const Container = styled.div<{ isCollapsed: boolean }>`
+  ${(props) =>
+    props.isCollapsed
+      ? css`
+          ${Header} {
+            width: 50px;
+          }
+          ${Nav} {
+            width: 50px;
+          }
+          ${Logo} {
+            width: 23px;
+          }
+        `
+      : ""};
+`;
+
+const Header = styled.header`
+  width: calc(100% - 2 * ${({ theme }) => theme.spacing[4]});
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justyfy-content: space-between;
+  padding: 0 ${({ theme }) => theme.spacing[4]};
+  background: ${({ theme }) => theme.colors.gray[900]};
+  @media (min-width: 760px) {
+    width: 248px;
+    padding: ${({ theme }) =>
+      `${theme.spacing[8]} ${theme.spacing[4]} ${theme.spacing[6]}`};
+  }
+`;
+
+const Nav = styled.nav`
+  width: 248px;
   height: calc(100vh - 2 * ${({ theme }) => theme.spacing[8]});
-  padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[4]}`};
+  padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[8]}`};
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.gray[900]};
+  transform: translateX(-100%);
 `;
 
-const Logo = styled.img<{ isCollapsed: boolean }>`
-  width: ${(props) => (props.isCollapsed ? "23px" : "118px")};
-  margin: 0 ${({ theme }) => `${theme.spacing[3]} ${theme.spacing[6]}`};
+const Logo = styled.img`
+  width: 118px;
+  @media (min-width: 760px) {
+    margin: 0 ${({ theme }) => theme.spacing[3]};
+  }
+`;
+
+const MenuIcon = styled.img`
+  @media (min-width: 760px) {
+    display: none;
+  }
 `;
 
 const List = styled.ul`
@@ -44,38 +85,45 @@ export function SidebarNavigation() {
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
 
   return (
-    <Nav isCollapsed={isSidebarCollapsed}>
-      <Logo
-        src={
-          isSidebarCollapsed ? "/icons/logo-small.svg" : "/icons/logo-large.svg"
-        }
-        isCollapsed={isSidebarCollapsed}
-      />
-      <LinkList>
-        {menuItems.map((menuItem, index) => (
-          <MenuItemLink
-            key={index}
-            {...menuItem}
-            isCollapsed={isSidebarCollapsed}
-            isActive={router.pathname === menuItem.href}
-          />
-        ))}
-      </LinkList>
+    <Container isCollapsed={isSidebarCollapsed}>
+      <Header>
+        <Logo
+          src={
+            isSidebarCollapsed
+              ? "/icons/logo-small.svg"
+              : "/icons/logo-large.svg"
+          }
+          alt="logo"
+        />
+        <MenuIcon src="icons/menu.svg" alt="open menu" />
+      </Header>
+      <Nav>
+        <LinkList>
+          {menuItems.map((menuItem, index) => (
+            <MenuItemLink
+              key={index}
+              {...menuItem}
+              isCollapsed={isSidebarCollapsed}
+              isActive={router.pathname === menuItem.href}
+            />
+          ))}
+        </LinkList>
 
-      <List>
-        <MenuItemButton
-          text="Support"
-          iconSrc="/icons/support.svg"
-          isCollapsed={isSidebarCollapsed}
-          onClick={() => alert("Support")}
-        />
-        <MenuItemButton
-          text="Collapse"
-          iconSrc="/icons/arrow-left.svg"
-          isCollapsed={isSidebarCollapsed}
-          onClick={() => toggleSidebar()}
-        />
-      </List>
-    </Nav>
+        <List>
+          <MenuItemButton
+            text="Support"
+            iconSrc="/icons/support.svg"
+            isCollapsed={isSidebarCollapsed}
+            onClick={() => alert("Support")}
+          />
+          <MenuItemButton
+            text="Collapse"
+            iconSrc="/icons/arrow-left.svg"
+            isCollapsed={isSidebarCollapsed}
+            onClick={() => toggleSidebar()}
+          />
+        </List>
+      </Nav>
+    </Container>
   );
 }
