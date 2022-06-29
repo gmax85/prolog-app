@@ -3,8 +3,9 @@ import { Routes } from "@config/routes";
 import { MenuItemLink } from "./MenuItemLink";
 import { MenuItemButton } from "./MenuItemBottom";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavigationContext } from "@contexts/Navigation";
+import { Button } from "@components/Button";
 
 const menuItems = [
   { text: "Projects", iconSrc: "/icons/projects.svg", href: Routes.projects },
@@ -35,8 +36,8 @@ const Header = styled.header`
   width: calc(100% - 2 * ${({ theme }) => theme.spacing[4]});
   height: 64px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justyfy-content: space-between;
   padding: 0 ${({ theme }) => theme.spacing[4]};
   background: ${({ theme }) => theme.colors.gray[900]};
   @media (min-width: 760px) {
@@ -63,7 +64,14 @@ const Logo = styled.img`
   }
 `;
 
+const MenuButton = styled(Button)`
+  @media (min-width: 760px) {
+    display: none;
+  }
+`;
+
 const MenuIcon = styled.img`
+  display: block;
   @media (min-width: 760px) {
     display: none;
   }
@@ -83,6 +91,7 @@ export function SidebarNavigation() {
   const router = useRouter();
   // const [isCollapsed, setCollapsed] = useState(false);
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <Container isCollapsed={isSidebarCollapsed}>
@@ -95,7 +104,12 @@ export function SidebarNavigation() {
           }
           alt="logo"
         />
-        <MenuIcon src="icons/menu.svg" alt="open menu" />
+        <MenuButton onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
+          <MenuIcon
+            src={isMobileMenuOpen ? "icons/close.svg" : "icons/menu.svg"}
+            alt="open menu"
+          />
+        </MenuButton>
       </Header>
       <Nav>
         <LinkList>
