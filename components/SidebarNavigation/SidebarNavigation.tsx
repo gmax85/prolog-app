@@ -15,6 +15,8 @@ const menuItems = [
   { text: "Settings", iconSrc: "/icons/settings.svg", href: Routes.settings },
 ];
 
+const HEADER_HEIGHT = "64px";
+
 const Container = styled.div<{ isCollapsed: boolean }>`
   ${(props) =>
     props.isCollapsed
@@ -34,12 +36,15 @@ const Container = styled.div<{ isCollapsed: boolean }>`
 
 const Header = styled.header`
   width: calc(100% - 2 * ${({ theme }) => theme.spacing[4]});
-  height: 64px;
+  height: ${HEADER_HEIGHT};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 ${({ theme }) => theme.spacing[4]};
   background: ${({ theme }) => theme.colors.gray[900]};
+  position: relative;
+  z-index: 1000;
+
   @media (min-width: 760px) {
     width: 248px;
     padding: ${({ theme }) =>
@@ -47,14 +52,18 @@ const Header = styled.header`
   }
 `;
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
   width: 248px;
-  height: calc(100vh - 2 * ${({ theme }) => theme.spacing[8]});
+  height: calc(100vh - ${HEADER_HEIGHT} - ${({ theme }) => theme.spacing[8]});
   padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[8]}`};
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.gray[900]};
-  transform: translateX(-100%);
+  position: relative;
+  z-index: 1000;
+  transform: ${({ isMobileMenuOpen }) =>
+    isMobileMenuOpen ? "translateX(0)" : "translateX(-100%)"};
+  transition: transform 300ms;
 `;
 
 const Logo = styled.img`
@@ -75,6 +84,24 @@ const MenuIcon = styled.img`
   @media (min-width: 760px) {
     display: none;
   }
+`;
+
+const MenuOverlay = styled.div<{ isMobileMenuOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.gray[700]};
+  opacity: ${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "60%" : "0%")};
+  transform: translateX
+    (${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "0" : "100%")});
+  display: ${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "block" : "none")};
+
+  transition: opacity 300ms,
+    transform 0s
+      ${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "0s" : "300ms")};
+  z-index: 999;
 `;
 
 const List = styled.ul`
@@ -111,7 +138,8 @@ export function SidebarNavigation() {
           />
         </MenuButton>
       </Header>
-      <Nav>
+      <MenuOverlay isMobileMenuOpen={isMobileMenuOpen} />
+      <Nav isMobileMenuOpen={isMobileMenuOpen}>
         <LinkList>
           {menuItems.map((menuItem, index) => (
             <MenuItemLink
