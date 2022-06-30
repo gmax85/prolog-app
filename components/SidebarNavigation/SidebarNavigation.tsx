@@ -59,7 +59,7 @@ const Header = styled.header`
 const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
   width: 312px;
 
-  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[8]} `};
+  padding: ${({ theme }) => `0 ${theme.spacing[2]} ${theme.spacing[8]} `};
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -73,6 +73,7 @@ const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
   @media (min-width: 760px) {
     transform: none;
     width: calc(100% - ${({ theme }) => theme.spacing[8]});
+    padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[8]} `};
   }
 `;
 
