@@ -59,7 +59,7 @@ const Header = styled.header`
 const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
   width: 312px;
 
-  padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[4]} `};
+  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[8]} `};
   flex: 1;
   display: flex;
   flex-direction: column;
