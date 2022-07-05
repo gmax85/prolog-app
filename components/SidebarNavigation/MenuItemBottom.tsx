@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button as UnstyledButton } from "@components/Button";
 
 type MenuItemProps = {
+  className?: string;
   text: string;
   iconSrc: string;
   onClick: () => void;
@@ -26,13 +27,14 @@ const Icon = styled.img`
 `;
 
 export function MenuItemButton({
+  className,
   text,
   onClick,
   iconSrc,
   isCollapsed,
 }: MenuItemProps) {
   return (
-    <ListItem>
+    <ListItem className={className}>
       <Button onClick={onClick}>
         <Icon src={iconSrc} alt={`${text} icon`} />
         {!isCollapsed && text}

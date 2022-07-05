@@ -129,6 +129,13 @@ const LinkList = styled(List)`
   flex: 1;
 `;
 
+const CollapseMenuItem = styled(MenuItemButton)`
+  display: none;
+  @media (min-width: 760px) {
+    display: block;
+  }
+`;
+
 export function SidebarNavigation() {
   const router = useRouter();
   // const [isCollapsed, setCollapsed] = useState(false);
@@ -173,7 +180,7 @@ export function SidebarNavigation() {
             isCollapsed={isSidebarCollapsed}
             onClick={() => alert("Support")}
           />
-          <MenuItemButton
+          <CollapseMenuItem
             text="Collapse"
             iconSrc="/icons/arrow-left.svg"
             isCollapsed={isSidebarCollapsed}
