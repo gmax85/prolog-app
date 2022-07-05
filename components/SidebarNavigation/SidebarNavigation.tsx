@@ -23,17 +23,17 @@ const Container = styled.div<{ isCollapsed: boolean }>`
   display: flex;
   flex-direction: column;
 
-  ${(props) =>
-    props.isCollapsed &&
-    css`
-      width: 83px;
-
-      ${Logo} {
-        width: 23px;
-      }
-    `};
   @media (min-width: 760px) {
     width: 280px;
+    ${(props) =>
+      props.isCollapsed &&
+      css`
+        width: 83px;
+
+        ${Logo} {
+          width: 23px;
+        }
+      `};
   }
 `;
 
@@ -50,7 +50,7 @@ const Header = styled.header`
 
   @media (min-width: 760px) {
     height: unset;
-    width: 248px;
+
     padding: ${({ theme }) =>
       `${theme.spacing[8]} ${theme.spacing[4]} ${theme.spacing[6]}`};
   }
