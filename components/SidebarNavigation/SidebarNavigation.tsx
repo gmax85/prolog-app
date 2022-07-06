@@ -66,6 +66,7 @@ const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
   background: ${({ theme }) => theme.colors.gray[900]};
   position: relative;
   z-index: 1000;
+
   transform: ${({ isMobileMenuOpen }) =>
     isMobileMenuOpen ? "translateX(0)" : "translateX(-100%)"};
   transition: transform 300ms;
@@ -156,7 +157,7 @@ export function SidebarNavigation() {
         <MenuButton onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
           <MenuIcon
             src={isMobileMenuOpen ? "icons/close.svg" : "icons/menu.svg"}
-            alt="open menu"
+            alt={isMobileMenuOpen ? "close menu" : "open menu"}
           />
         </MenuButton>
       </Header>
