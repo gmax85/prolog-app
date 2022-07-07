@@ -9,11 +9,13 @@ describe("Sidebar Navigation", () => {
     });
 
     it("links are working", () => {
+      cy.findByRole("navigation").findByText("Projects").click();
+      cy.url().should("eq", "http://localhost:3000/");
+
       cy.findByRole("navigation").findByText("Issues").click();
       cy.url().should("eq", "http://localhost:3000/issues");
 
-      cy.findByRole("navigation").findByText("Projects").click();
-      cy.url().should("eq", "http://localhost:3000/");
+
     });
 
     it("is collapsible", () => {
