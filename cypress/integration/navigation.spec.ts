@@ -1,5 +1,6 @@
 describe("Sidebar Navigation", () => {
   beforeEach(() => {
+
     cy.visit("http://localhost:3000");
   });
 
@@ -67,6 +68,7 @@ describe("Sidebar Navigation", () => {
       isNotInViewport("nav");
     });
   });
+
 });
 
 export { };

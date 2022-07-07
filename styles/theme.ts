@@ -28,6 +28,7 @@ export const theme = {
     20: "5rem",
     24: "6rem",
   },
+
   breakpoint: {
     desktop: "64em"
   },

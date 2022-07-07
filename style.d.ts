@@ -33,6 +33,7 @@ declare module 'styled-components' {
       20: string
       24: string
     }
+
     breakpoint: {
       desktop: string
     },

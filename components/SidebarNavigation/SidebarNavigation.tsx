@@ -1,8 +1,10 @@
+
 import styled, { css } from "styled-components";
 import { Routes } from "@config/routes";
 import { MenuItemLink } from "./MenuItemLink";
 import { MenuItemButton } from "./MenuItemBottom";
 import { useRouter } from "next/router";
+
 import { useContext, useState } from "react";
 import { NavigationContext } from "@contexts/Navigation";
 import { Button } from "@components/Button";
@@ -14,6 +16,7 @@ const menuItems = [
   { text: "Users", iconSrc: "/icons/users.svg", href: Routes.users },
   { text: "Settings", iconSrc: "/icons/settings.svg", href: Routes.settings },
 ];
+
 
 const HEADER_HEIGHT = "64px";
 
@@ -130,6 +133,7 @@ const LinkList = styled(List)`
   flex: 1;
 `;
 
+
 const CollapseMenuItem = styled(MenuItemButton)`
   display: none;
   @media (min-width: 760px) {
@@ -141,6 +145,7 @@ export function SidebarNavigation() {
   const router = useRouter();
   // const [isCollapsed, setCollapsed] = useState(false);
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
