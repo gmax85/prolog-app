@@ -9,6 +9,7 @@
     "check-format": "prettier --check",
     "lint": "next lint",
     "cypress": "cypress open",
+    "test": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install"
@@ -29,6 +30,7 @@
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "0.0.11",
     "@testing-library/cypress": "^8.0.3",
+    "@types/jest": "^28.1.4",
     "@types/node": "17.0.31",
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
@@ -41,6 +43,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-storybook": "^0.5.11",
     "husky": "^8.0.1",
+    "jest": "^27.5.1",
     "lint-staged": "^12.4.1",
     "prettier": "2.6.2",
     "typescript": "4.6.4"
