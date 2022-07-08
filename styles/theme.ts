@@ -1,5 +1,9 @@
+import { DefaultTheme } from "styled-components";
+
+
+
 export const theme = {
-  colors: {
+  color: {
     gray: {
       25: "#FCFCFD",
       50: "#F9FAFB",
@@ -14,7 +18,8 @@ export const theme = {
       900: "#101828",
     },
   },
-  spacing: {
+  space: {
+    0: "0",
     1: "0.25rem",
     2: "0.5rem",
     3: "0.75rem",
@@ -39,3 +44,16 @@ export const theme = {
 
 
 };
+export function color(
+  name: keyof DefaultTheme["color"],
+  shade: keyof DefaultTheme["color"]['gray']) {
+  return ({ theme }: { theme: DefaultTheme }) => theme.color[name][shade];
+}
+
+
+export function space(...names: Array<keyof DefaultTheme["space"]>) {
+  return ({ theme }: { theme: DefaultTheme }) => {
+    const spaces = names.map((name) => theme.space[name]);
+    return spaces.join(" ");
+  }
+}
