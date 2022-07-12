@@ -13,7 +13,7 @@ type MenuItemProps = {
 };
 
 const ListItem = styled.li`
-  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[3]}`};
+  padding: ${({ theme }) => `${theme.space[2]} ${theme.space[3]}`};
 `;
 
 
@@ -21,7 +21,7 @@ const Button = styled(UnstyledButton)`
 
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.gray[100]};
+  color: ${({ theme }) => theme.color.gray[100]};
   text-decoration: none;
   cursor: pointer;
 
@@ -29,7 +29,7 @@ const Button = styled(UnstyledButton)`
 `;
 
 const Icon = styled.img`
-  margin-right: ${({ theme }) => theme.spacing[3]};
+  margin-right: ${({ theme }) => theme.space[3]};
 `;
 
 export function MenuItemButton({

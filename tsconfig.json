@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     "styles/theme.ts",
-    "cypress/integration/navigation.spec.ts"
+    "cypress/integration/navigation.spec.ts",
+    "jest.config.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { NavigationContext } from "@contexts/Navigation";
 import { Button } from "@components/Button";
+import { space, color } from "@styles/theme";
 
 
 const menuItems = [
@@ -43,32 +44,31 @@ const Container = styled.div<{ isCollapsed: boolean }>`
 `;
 
 const Header = styled.header`
-  width: calc(100% - 2 * ${({ theme }) => theme.spacing[4]});
+  width: calc(100% - 2 * ${space(4)});
   height: ${HEADER_HEIGHT};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 ${({ theme }) => theme.spacing[4]};
-  background: ${({ theme }) => theme.colors.gray[900]};
+  padding: ${space(0, 4)};
+  background: ${color("gray", 900)};
   position: relative;
   z-index: 1000;
 
   @media (min-width: 760px) {
     height: unset;
 
-    padding: ${({ theme }) =>
-      `${theme.spacing[8]} ${theme.spacing[4]} ${theme.spacing[6]}`};
+    padding: ${space(8, 4, 6)};
   }
 `;
 
 const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
   width: 312px;
 
-  padding: ${({ theme }) => `0 ${theme.spacing[2]} ${theme.spacing[8]} `};
+  padding: ${space(2, 8)};
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.gray[900]};
+  background: ${color("gray", 900)};
   position: relative;
   z-index: 1000;
 
@@ -78,15 +78,15 @@ const Nav = styled.nav<{ isMobileMenuOpen: boolean }>`
 
   @media (min-width: 760px) {
     transform: none;
-    width: calc(100% - ${({ theme }) => theme.spacing[8]});
-    padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[8]} `};
+    width: calc(100% - ${space(8)});
+    padding: ${space(4, 8)};
   }
 `;
 
 const Logo = styled.img`
   width: 118px;
   @media (min-width: 760px) {
-    margin: 0 ${({ theme }) => theme.spacing[3]};
+    margin: ${space(0, 3)};
   }
 `;
 
@@ -109,7 +109,7 @@ const MenuOverlay = styled.div<{ isMobileMenuOpen: boolean }>`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.gray[700]};
+  background-color: ${color("gray", 700)};
   opacity: ${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "60%" : "0%")};
   transform: translateX
     (${({ isMobileMenuOpen }) => (isMobileMenuOpen ? "0" : "100%")});
